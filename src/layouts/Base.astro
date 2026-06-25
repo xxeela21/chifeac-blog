@@ -26,9 +26,9 @@ const siteName = 'Alexandru Chifeac';
 const homepageTagline = lang === 'it'
   ? 'AI, automazioni e agenti'
   : 'AI, automations and agents';
-const fullTitle = title === siteName
+const fullTitle = (title === siteName
   ? `${siteName} — ${homepageTagline}`
-  : `${title} — ${siteName}`;
+  : `${title} — ${siteName}`).toLowerCase();
 const alternateLang = lang === 'it' ? 'en' : 'it';
 ---
 
