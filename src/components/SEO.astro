@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL: string;
+  lang: 'it' | 'en';
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalURL,
+  lang,
+  ogType = 'website',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const siteName = 'Alexandru Chifeac';
+const ogLocale = lang === 'it' ? 'it_IT' : 'en_US';
+const ogImageAbsolute = Astro.site
+  ? new URL(ogImage, Astro.site).href
+  : ogImage;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:image" content={ogImageAbsolute} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageAbsolute} />

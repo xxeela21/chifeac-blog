@@ -42,27 +42,53 @@ const meta = {
 
       <hr class="divider" />
 
+      <img
+        src="/alex.jpeg"
+        alt="Alexandru Chifeac"
+        width="500"
+        height="500"
+        loading="lazy"
+        class="profile-photo"
+      />
+
       {lang === 'it' ? (
         <div class="prose">
           <p>
-            La qualità delle risposte che ottieni dipende dalla qualità delle domande che
-            sai fare. Vale per l'AI, e ho scoperto che vale anche per me stesso.
+            Mi chiamo Alexandru, ma per tutti sono Alex. Ho 24 anni, vivo in provincia di
+            Venezia, e sono uno studente autodidatta che usa l'AI ogni giorno per studiare
+            e lavorare.
           </p>
           <p>
-            Mi chiamo Alexandru, ma per tutti sono Alex. Per molto tempo la mia domanda
-            è stata: "cosa devo imparare per non restare indietro?". Mi sono perso in
-            roadmap infinite, piani riscritti ogni settimana, strumenti inseguiti e mai
-            usati davvero. Poi ho cambiato domanda: "cosa voglio davvero costruire?".
-            Tutto è diventato più semplice.
+            Questo blog nasce da una frustrazione che forse stai vivendo anche tu. Ogni
+            giorno escono nuovi tool, nuove tecnologie, nuovi modi di fare le cose. È un
+            caos che stravolge di continuo roadmap e piani di studio per imparare l'AI.
           </p>
           <p>
-            Uso l'AI ogni giorno per sperimentare, studiare, automatizzare. Non per
-            delegarle il pensiero, che resta mio, ma per estenderlo. Questo blog è dove
-            tengo traccia del percorso: cosa funziona, cosa no, e cosa imparo quando sbaglio.
+            Per molto tempo ho creduto di dover imparare tutto per non restare indietro.
+            Una rincorsa continua, in cui ogni piano sembrava quello definitivo finché non
+            ne arrivava un altro. Poi ho capito una cosa: stavo dedicando più energie a
+            prepararmi per imparare che a imparare davvero.
           </p>
           <p>
-            Niente scorciatoie. Solo una persona che prova a distinguere il segnale dal
-            rumore, in pubblico.
+            La mia paura non era che l'AI mi sostituisse, ma di non cogliere il valore
+            reale di questa trasformazione.
+          </p>
+          <p>
+            L'errore più grande che ho fatto è stato usare l'AI come sostituto del mio
+            pensiero invece che come estensione di esso. Ho capito che la qualità delle
+            risposte dipende dalla qualità delle domande. E che prima di chiedere qualcosa
+            a un modello, bisogna saper rispondere a una domanda più importante: "Cosa
+            voglio davvero costruire?"
+          </p>
+          <p>
+            Oggi non punto a diventare il miglior programmatore del mondo. Voglio capire
+            come muovermi in un mondo che cambia in fretta e come usare questi strumenti
+            senza delegare il mio pensiero.
+          </p>
+          <p>
+            Qui raccolgo esperimenti, errori e riflessioni. Non troverai scorciatoie, ma
+            il percorso di una persona che impara in pubblico. Se ti aiuterà a distinguere
+            il segnale dal rumore, avrà raggiunto il suo scopo.
           </p>
           <p>
             Contatti: <a href="mailto:info@chifeac.com">info@chifeac.com</a>
@@ -71,23 +97,39 @@ const meta = {
       ) : (
         <div class="prose">
           <p>
-            The quality of the answers you get depends on the quality of the questions
-            you can ask. That's true for AI, and I found out it's true for myself too.
+            My name is Alexandru, but everyone calls me Alex. I'm 24, I live near Venice,
+            Italy, and I'm a self-taught student who uses AI every day to study and work.
           </p>
           <p>
-            My name is Alexandru, but everyone calls me Alex. For a long time my question
-            was: "what should I learn so I don't fall behind?". I got lost in endless
-            roadmaps, plans rewritten every week, tools chased and never really used.
-            Then I changed the question: "what do I actually want to build?". Everything
-            got simpler.
+            This blog comes from a frustration you might be feeling too. Every day brings
+            new tools, new technologies, new ways of doing things. It's a chaos that
+            constantly upends roadmaps and study plans for learning AI.
           </p>
           <p>
-            I use AI every day to experiment, study, automate. Not to outsource my
-            thinking, which stays mine, but to extend it. This blog is where I track the
-            journey: what works, what doesn't, and what I learn when I get it wrong.
+            For a long time I believed I had to learn everything to keep up. A constant
+            chase, where every plan felt like the definitive one until the next came along.
+            Then I realized something: I was spending more energy preparing to learn than
+            actually learning.
           </p>
           <p>
-            No shortcuts. Just someone trying to tell signal from noise, in public.
+            My fear wasn't that AI would replace me, but that I'd fail to grasp the real
+            value of this transformation.
+          </p>
+          <p>
+            The biggest mistake I made was using AI as a substitute for my thinking instead
+            of an extension of it. I learned that the quality of the answers depends on the
+            quality of the questions. And that before asking a model anything, you need to
+            answer a more important question: "What do I actually want to build?"
+          </p>
+          <p>
+            Today I'm not trying to become the world's best programmer. I want to understand
+            how to move through a fast-changing world, and how to use these tools without
+            outsourcing my thinking.
+          </p>
+          <p>
+            Here I collect experiments, mistakes, and reflections. You won't find shortcuts,
+            but the journey of someone learning in public. If it helps you tell the signal
+            from the noise, it will have done its job.
           </p>
           <p>
             Contact: <a href="mailto:info@chifeac.com">info@chifeac.com</a>
@@ -112,6 +154,13 @@ const meta = {
     letter-spacing: -0.02em;
   }
 
-
+  .profile-photo {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 1.75rem 0 2rem;
+  }
 </style>
 
