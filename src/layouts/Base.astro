@@ -23,7 +23,12 @@ const {
 } = Astro.props;
 
 const siteName = 'Alexandru Chifeac';
-const fullTitle = title === siteName ? siteName : `${title} — ${siteName}`;
+const homepageTagline = lang === 'it'
+  ? 'AI, automazioni e agenti'
+  : 'AI, automations and agents';
+const fullTitle = title === siteName
+  ? `${siteName} — ${homepageTagline}`
+  : `${title} — ${siteName}`;
 const alternateLang = lang === 'it' ? 'en' : 'it';
 ---
 
@@ -44,6 +49,7 @@ const alternateLang = lang === 'it' ? 'en' : 'it';
     <!-- SEO -->
     <SEO
       title={fullTitle}
+      ogTitle={title}
       description={description}
       canonicalURL={canonicalUrl}
       lang={lang as 'it' | 'en'}
