@@ -31,10 +31,11 @@ const alternateLang = lang === 'it' ? 'en' : 'it';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Prevent FOUC: apply saved theme before first paint -->
+    <!-- Prevent FOUC: apply saved theme before first paint; mark JS active for typewriter -->
     <script is:inline>
       const saved = localStorage.getItem('theme');
       if (saved) document.documentElement.setAttribute('data-theme', saved);
+      document.documentElement.classList.add('js');
     </script>
 
     <!-- SEO -->
