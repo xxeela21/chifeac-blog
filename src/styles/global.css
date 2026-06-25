@@ -1,0 +1,200 @@
+/* ─── Fonts (self-hosted via Fontsource) ─── */
+@import '@fontsource/commit-mono/latin-400.css';
+@import '@fontsource/commit-mono/latin-400-italic.css';
+@import '@fontsource/commit-mono/latin-600.css';
+@import '@fontsource/commit-mono/latin-700.css';
+
+/* ─── Tokens ─── */
+:root {
+  /* Palette – dark mode (default) */
+  --bg:      #0D0D0D;
+  --surface: #161616;
+  --border:  #262626;
+  --text:    #E2E2E2;
+  --muted:   #C0C0C0;
+  --accent:  #D4500A;
+
+  /* Typography */
+  --font-mono: 'Commit Mono', monospace;
+  --font-sans: 'Commit Mono', monospace;
+
+  /* Type scale */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  2rem;
+  --text-hero: clamp(2rem, 6vw, 3rem);
+
+  /* Layout */
+  --max-width: 680px;
+}
+
+[data-theme='light'] {
+  --bg:      #F5F5F3;
+  --surface: #EBEBEA;
+  --border:  #D4D4D2;
+  --text:    #1A1A1A;
+  --muted:   #888888;
+  --accent:  #D4500A;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ─── Layout ─── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ─── Links ─── */
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  transition: text-decoration-color 0.15s;
+}
+
+a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* ─── Divider ─── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* ─── Prose (article body) ─── */
+.prose {
+  font-size: var(--text-base);
+  line-height: 1.8;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h2 { font-size: var(--text-xl); }
+.prose h3 { font-size: var(--text-lg); }
+
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--surface);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  color: var(--accent);
+}
+
+.prose pre {
+  background: var(--surface);
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-left: 2px solid var(--accent);
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  font-size: var(--text-sm);
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.25rem;
+  color: var(--muted);
+  margin: 1.5rem 0;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.375rem;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration-color: transparent;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* ─── Cursor blink (the one animation) ─── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor {
+  color: var(--accent);
+  animation: blink 1.2s step-end infinite;
+  user-select: none;
+  margin-left: 0.1em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+}
+
+/* ─── Focus ─── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

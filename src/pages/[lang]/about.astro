@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'it' } }, { params: { lang: 'en' } }];
+}
+
+const lang = Astro.params.lang as 'it' | 'en';
+const alternateLang = lang === 'it' ? 'en' : 'it';
+
+const alternateUrl = `/${alternateLang}/about`;
+const canonicalUrl = Astro.site ? new URL(`/${lang}/about`, Astro.site).href : Astro.url.href;
+
+const meta = {
+  it: {
+    title: 'Chi sono',
+    description: 'Alexandru Chifeac: cosa faccio, cosa mi interessa, perché scrivo di AI.',
+  },
+  en: {
+    title: 'About',
+    description: 'Alexandru Chifeac: what I do, what interests me, and why I write about AI.',
+  },
+}[lang];
+---
+
+<Base
+  title={meta.title}
+  description={meta.description}
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Header lang={lang} alternateUrl={alternateUrl} />
+
+  <main>
+    <article>
+      <header class="page-header">
+        <h1>{meta.title}</h1>
+      </header>
+
+      <hr class="divider" />
+
+      {lang === 'it' ? (
+        <div class="prose">
+          <p>
+            La qualità delle risposte che ottieni dipende dalla qualità delle domande che
+            sai fare. Vale per l'AI, e ho scoperto che vale anche per me stesso.
+          </p>
+          <p>
+            Mi chiamo Alexandru, ma per tutti sono Alex. Per molto tempo la mia domanda
+            è stata: "cosa devo imparare per non restare indietro?". Mi sono perso in
+            roadmap infinite, piani riscritti ogni settimana, strumenti inseguiti e mai
+            usati davvero. Poi ho cambiato domanda: "cosa voglio davvero costruire?".
+            Tutto è diventato più semplice.
+          </p>
+          <p>
+            Uso l'AI ogni giorno per sperimentare, studiare, automatizzare. Non per
+            delegarle il pensiero, che resta mio, ma per estenderlo. Questo blog è dove
+            tengo traccia del percorso: cosa funziona, cosa no, e cosa imparo quando sbaglio.
+          </p>
+          <p>
+            Niente scorciatoie. Solo una persona che prova a distinguere il segnale dal
+            rumore, in pubblico.
+          </p>
+          <p>
+            Contatti: <a href="mailto:info@chifeac.com">info@chifeac.com</a>
+          </p>
+        </div>
+      ) : (
+        <div class="prose">
+          <p>
+            The quality of the answers you get depends on the quality of the questions
+            you can ask. That's true for AI, and I found out it's true for myself too.
+          </p>
+          <p>
+            My name is Alexandru, but everyone calls me Alex. For a long time my question
+            was: "what should I learn so I don't fall behind?". I got lost in endless
+            roadmaps, plans rewritten every week, tools chased and never really used.
+            Then I changed the question: "what do I actually want to build?". Everything
+            got simpler.
+          </p>
+          <p>
+            I use AI every day to experiment, study, automate. Not to outsource my
+            thinking, which stays mine, but to extend it. This blog is where I track the
+            journey: what works, what doesn't, and what I learn when I get it wrong.
+          </p>
+          <p>
+            No shortcuts. Just someone trying to tell signal from noise, in public.
+          </p>
+          <p>
+            Contact: <a href="mailto:info@chifeac.com">info@chifeac.com</a>
+          </p>
+        </div>
+      )}
+    </article>
+  </main>
+</Base>
+
+<style>
+  .page-header {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+</style>
+

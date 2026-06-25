@@ -1,0 +1,124 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  return allPosts
+    .filter(post => !post.data.draft)
+    .map(post => {
+      const parts = post.id.split('/');
+      const lang = parts[0];
+      const slug = parts.slice(1).join('/').replace(/\.md$/, '');
+      return { params: { lang, slug }, props: { post } };
+    });
+}
+
+const { lang, slug } = Astro.params as { lang: string; slug: string };
+const { post } = Astro.props;
+
+const { Content } = await render(post);
+
+function readingTime(body: string): number {
+  const words = body.trim().split(/\s+/).length;
+  return Math.ceil(words / 200);
+}
+
+const rawBody: string = (post as Record<string, unknown>).body as string ?? '';
+const minutes = readingTime(rawBody);
+const readingLabel = lang === 'it' ? `${minutes} min di lettura` : `${minutes} min read`;
+
+const isoDate = post.data.pubDate.toISOString().slice(0, 10);
+
+const allPosts = await getCollection('blog');
+const alternateLang = lang === 'it' ? 'en' : 'it';
+const hasTranslation = allPosts.some(p => p.id === `${alternateLang}/${slug}.md`);
+const alternateUrl = hasTranslation ? `/${alternateLang}/blog/${slug}` : undefined;
+
+const canonicalUrl = Astro.site
+  ? new URL(`/${lang}/blog/${slug}`, Astro.site).href
+  : Astro.url.href;
+---
+
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+  alternateUrl={alternateUrl}
+>
+  <Header lang={lang} alternateUrl={alternateUrl} />
+
+  <main>
+    <article>
+      <header class="post-header">
+        <h1 class="post-title">{post.data.title}</h1>
+        <div class="post-meta">
+          <time datetime={isoDate}>{isoDate}</time>
+          <span class="sep" aria-hidden="true">·</span>
+          <span>{readingLabel}</span>
+        </div>
+      </header>
+
+      <hr class="divider" />
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <a href={`/${lang}/`} class="back-link">
+          &larr; {lang === 'it' ? 'Tutti gli articoli' : 'All articles'}
+        </a>
+      </footer>
+    </article>
+  </main>
+</Base>
+
+<style>
+  .post-header {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .post-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .post-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sep {
+    color: var(--border);
+  }
+
+  .post-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+</style>

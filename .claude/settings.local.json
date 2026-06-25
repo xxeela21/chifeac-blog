@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(mv /Users/alex/Desktop/Blog/fumbling-field/* /Users/alex/Desktop/Blog/fumbling-field/.* /Users/alex/Desktop/Blog/)",
+      "Bash(rmdir /Users/alex/Desktop/Blog/fumbling-field)",
+      "Bash(npm install *)",
+      "Bash(npm uninstall *)"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+---
+interface Props {
+  lang: string;
+  alternateUrl?: string;
+}
+
+const { lang, alternateUrl } = Astro.props;
+const targetLang = lang === 'it' ? 'en' : 'it';
+const label = targetLang.toUpperCase();
+---
+
+{alternateUrl ? (
+  <a href={alternateUrl} class="lang-switch" lang={targetLang} aria-label={`Switch to ${targetLang === 'it' ? 'Italian' : 'English'}`}>
+    {label}
+  </a>
+) : (
+  <span class="lang-switch lang-unavailable" aria-label={`Not available in ${label}`} title={`Not available in ${label}`}>
+    {label}
+  </span>
+)}
+
+<style>
+  .lang-switch {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .lang-switch:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .lang-unavailable {
+    color: var(--border);
+    cursor: default;
+  }
+</style>
